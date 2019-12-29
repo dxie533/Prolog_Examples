@@ -1,0 +1,55 @@
+%David Xie
+%SBU ID: 111098813
+
+%Facts
+figure(1, middle(triangle, square)).
+figure(2, middle(circle, triangle)).
+figure(3, middle(square, circle)).
+figure(4, middle(square, square)).
+figure(5, middle(square, triangle)).
+figure(6, middle(triangle, circle)).
+figure(7, middle(circle, square)).
+figure(8, middle(triangle, triangle)).
+
+%Predicates
+
+relate(A, middle(F1,F2), B, middle(F2,F1), invert) :-
+figure(A, middle(F1, F2)),
+figure(B, middle(F2, F1)),
+A \== B.
+
+relate(A, middle(F1,F2), B, middle(F1,F3), sameInner) :-
+figure(A, middle(F1, F2)),
+figure(B, middle(F1, F3)),
+A \== B.
+
+relate(A, middle(F1,F2), B, middle(F3,F2), sameOuter) :-
+figure(A, middle(F1, F2)),
+figure(B, middle(F3, F2)),
+A \== B.
+
+relate(A, middle(F1,F2), B, middle(F3,F1), innerMatchOuter) :-
+figure(A, middle(F1, F2)),
+figure(B, middle(F3, F1)),
+A \== B.
+
+relate(A, middle(F1,F2), B, middle(F2,F3), outerMatchInner) :-
+figure(A, middle(F1, F2)),
+figure(B, middle(F2, F3)),
+A \== B.
+	
+	
+%relate(middle(F1,F2),middle(F3,F4), switch) :-
+%figure(X, middle(F1, F2)),
+%figure(Y, middle(F3, F4)),
+%X \== Y,
+%F1 == F2,
+%F3 == F4.
+
+%analogy((A, B), (C, X)) :-
+%    relate(A, B, Relation), 
+%	relate(C, X, Relation).
+
+analogy((A, B), (C, X)) :-
+    relate(A, middle(_,_), B, middle(_,_), Relation),
+ 	relate(C, middle(_,_), X, middle(_,_), Relation).

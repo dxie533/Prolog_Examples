@@ -1,0 +1,28 @@
+%David Xie
+%SBU ID: 111098813
+
+%Facts
+
+p(a, b, c, i).
+
+%Predicates
+walk(a, c, p(a,b,c,i)) :-
+	p(a, b, c, i).
+
+push(c, b, walk(a, c, p(a,b,c,i))) :-
+	walk(a, c, p(a,b,c,i)).
+
+walk(c, b, push(c, b, walk(a, c, i))) :-
+	push(c, b, walk(a, c, p(a,b,c,i))).
+
+%climb(walk(c, b, push(c, b, walk(a, c, i)))) :-
+%	walk(c, b, push(c, b, walk(a, c, i))).
+
+reach(grasp(climb(walk(c, b, push(c, b, walk(a, c, i)))))) :-
+	walk(c, b, push(c, b, walk(a, c, i))).
+
+%grasp(climb(walk(c, b, push(c, b, walk(a, c, i))))) :-
+%	climb(walk(c, b, push(c, b, walk(a, c, i)))).
+
+%reach(s) :-
+%	grasp(climb(walk(c, b, push(c, b, walk(a, c, i))))).
